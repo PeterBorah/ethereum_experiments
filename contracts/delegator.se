@@ -1,0 +1,5 @@
+if msg.data[0] == "Set":
+    contract.storage[0] = msg.data[1] 
+    return(1)
+elif msg.data[0] == "Use":
+    return(msg(100, contract.storage[0], 0, msg.data[1]))
