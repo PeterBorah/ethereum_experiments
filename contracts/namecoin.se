@@ -1,0 +1,8 @@
+if msg.data[0] == "Add":
+    if not contract.storage[msg.data[1]]:
+        contract.storage[msg.data[1]] = msg.data[2] 
+        return(1)
+    else:
+        return(0)
+elif msg.data[0] == "Get":
+    return(contract.storage[msg.data[1]])
