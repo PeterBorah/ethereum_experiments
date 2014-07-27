@@ -2,4 +2,9 @@ if msg.data[0] == "Set":
     contract.storage[0] = msg.data[1] 
     return(1)
 elif msg.data[0] == "Use":
-    return(msg(100, contract.storage[0], 0, msg.data[1]))
+    args = array(msg.datasize - 1)
+    i = 1
+    while i < msg.datasize:
+        args[i - 1] = msg.data[i]
+        i += 1
+    return(msg(1000, contract.storage[0], 0, args, msg.datasize - 1))

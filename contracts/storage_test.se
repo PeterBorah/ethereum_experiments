@@ -1,0 +1,3 @@
+contract.storage[0] = 1990
+contract.storage[1] = 2200
+return(contract.storage[1])
