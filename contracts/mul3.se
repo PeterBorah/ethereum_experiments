@@ -1,0 +1,2 @@
+if 1 == 1: # This condition is just to avoid a logging bug that borks your terminal.
+    return(msg.data[0] * 3)
