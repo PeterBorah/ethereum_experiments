@@ -1,0 +1,4 @@
+if 1 == 1:
+    old = contract.storage[0]
+    contract.storage[0] = msg.data[0]
+    return(old)
