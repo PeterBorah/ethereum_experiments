@@ -7,5 +7,4 @@ class TestMul2:
         self.contract = eth_tools.Contract(bc, "contracts/mul2.se")
 
     def test_multiplies(self):
-        assert_equal(self.contract.invoke([42]), [85])
-
+        assert_equal(self.contract.invoke([42]), [84])
