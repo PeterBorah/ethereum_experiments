@@ -1,0 +1,9 @@
+# Assumes you've already checked for win.
+
+i = 0
+while i < 9:
+    if msg.data[i] == 0:
+        return(0)
+    i += 1
+
+return(1)
