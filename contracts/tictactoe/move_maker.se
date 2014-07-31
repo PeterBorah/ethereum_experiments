@@ -1,0 +1,13 @@
+player = msg.data[9]
+move = msg.data[10]
+
+i = 0
+board = array(9)
+while i < 9:
+    if i == move:
+        board[i] = player
+    else:
+        board[i] = msg.data[i]
+    i += 1
+
+return(board, 9)
