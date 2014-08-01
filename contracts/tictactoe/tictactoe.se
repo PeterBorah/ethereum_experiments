@@ -1,11 +1,13 @@
 init:
-    contract.storage[0] = 0
+    contract.storage[0] = 1
+    contract.storage[1] = create("contracts/tictactoe/move_maker.se")
 code:
     if msg.data[0] == "create":
        id = contract.storage[0] + 1
        object_store = create("contracts/simple_object_store.se")
        call(object_store,[0,0,0,0,0,0,0,0,0,1,msg.data[1],msg.data[2]], 12)
        contract.storage[id] = object_store
+       contract.storage[0] += 1
 
        return(id)
 
@@ -13,3 +15,19 @@ code:
         id = msg.data[1]
         object_store = contract.storage[id]
         return(call(object_store,[],0,12), 10)
+
+    if msg.data[0] == "move":
+        id = msg.data[1]
+        object_store = contract.storage[id]
+        game_state = call(object_store,[],0,12)
+        player = msg.data[2]
+        move = msg.data[3]
+
+        game_state[move] = player
+        if player == 1:
+            game_state[9] = 2
+        else:
+            game_state[9] = 1
+
+        call(object_store,game_state,12)
+        return(1)
