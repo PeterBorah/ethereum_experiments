@@ -7,6 +7,6 @@ class TestMoveMaker:
         self.contract = eth_tools.Contract(bc, "contracts/tictactoe/move_maker.se")
 
     def test_makes_moves(self):
-        before = [2,1,2,1,2,1,0,1,2]
-        after = [2,1,2,1,2,1,1,1,2]
+        before = [2,1,2,1,2,1,0,1,2,1,123,456]
+        after = [2,1,2,1,2,1,1,1,2,2,123,456]
         assert_equal(self.contract.invoke(before + [1, 6]), after)

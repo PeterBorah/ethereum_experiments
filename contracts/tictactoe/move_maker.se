@@ -1,13 +1,21 @@
-player = msg.data[9]
-move = msg.data[10]
+player = msg.data[12]
+move = msg.data[13]
 
 i = 0
-board = array(9)
+new_game_state = array(12)
 while i < 9:
     if i == move:
-        board[i] = player
+        new_game_state[i] = player
     else:
-        board[i] = msg.data[i]
+        new_game_state[i] = msg.data[i]
     i += 1
 
-return(board, 9)
+if msg.data[9] == 1:
+    new_game_state[9] = 2
+else:
+    new_game_state[9] = 1
+
+new_game_state[10] = msg.data[10]
+new_game_state[11] = msg.data[11]
+
+return(new_game_state, 12)

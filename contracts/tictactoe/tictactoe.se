@@ -19,15 +19,13 @@ code:
     if msg.data[0] == "move":
         id = msg.data[1]
         object_store = contract.storage[id]
-        game_state = call(object_store,[],0,12)
-        player = msg.data[2]
-        move = msg.data[3]
+        move_maker = contract.storage[1]
 
-        game_state[move] = player
-        if player == 1:
-            game_state[9] = 2
-        else:
-            game_state[9] = 1
+        game_state = call(object_store,[],0,14)
+        game_state[12] = msg.data[2]
+        game_state[13] = msg.data[3]
 
-        call(object_store,game_state,12)
+        new_game_state = call(move_maker,game_state,14,12)
+
+        call(object_store,new_game_state,12)
         return(1)
