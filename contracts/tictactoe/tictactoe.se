@@ -1,0 +1,15 @@
+init:
+    contract.storage[0] = 0
+code:
+    if msg.data[0] == "create":
+       id = contract.storage[0] + 1
+       object_store = create("contracts/simple_object_store.se")
+       call(object_store,[0,0,0,0,0,0,0,0,0,1,msg.data[1],msg.data[2]], 12)
+       contract.storage[id] = object_store
+
+       return(id)
+
+    if msg.data[0] == "get":
+        id = msg.data[1]
+        object_store = contract.storage[id]
+        return(call(object_store,[],0,12), 10)

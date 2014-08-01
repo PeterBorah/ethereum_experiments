@@ -1,6 +1,7 @@
 if msg.datasize == 0:
     datasize = contract.storage[0]
     data = array(datasize)
+    i = 0
     while i < datasize:
         data[i] = contract.storage[i + 1]
         i += 1
