@@ -22,6 +22,10 @@ code:
         move_maker = contract.storage[1]
 
         game_state = call(object_store,[],0,14)
+
+        if msg.data[2] != game_state[9]:
+            return(0)
+
         game_state[12] = msg.data[2]
         game_state[13] = msg.data[3]
 

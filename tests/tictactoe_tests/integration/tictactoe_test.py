@@ -23,7 +23,10 @@ class TestTicTacToe:
         assert_equal(self.contract.invoke(["get", game_id2]), [0,0,0,0,0,0,0,0,0,1])
 
     def test_only_allows_correct_player_to_move(self):
-        pass
+        game_id = self.contract.invoke(["create", "a", "b"])[0]
+        self.contract.invoke(["move",game_id,1,2])
+        assert_equal(self.contract.invoke(["move",game_id,1,1]), [0])
+        assert_equal(self.contract.invoke(["get", game_id]), [0,0,1,0,0,0,0,0,0,2])
 
     def test_checks_for_win(self):
         pass
