@@ -1,21 +1,13 @@
-player = msg.data[12]
-move = msg.data[13]
+player = msg.data[1]
+move = msg.data[2]
 
-i = 0
-new_game_state = array(12)
-while i < 9:
-    if i == move:
-        new_game_state[i] = player
-    else:
-        new_game_state[i] = msg.data[i]
-    i += 1
+game_state = call(msg.data[0],[],0,12)
 
-if msg.data[9] == 1:
-    new_game_state[9] = 2
+game_state[move] = player
+
+if game_state[9] == 1:
+    game_state[9] = 2
 else:
-    new_game_state[9] = 1
+    game_state[9] = 1
 
-new_game_state[10] = msg.data[10]
-new_game_state[11] = msg.data[11]
-
-return(new_game_state, 12)
+return(game_state, 12)

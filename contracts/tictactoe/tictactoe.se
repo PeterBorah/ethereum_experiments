@@ -21,15 +21,12 @@ code:
         object_store = contract.storage[id]
         move_maker = contract.storage[1]
 
-        game_state = call(object_store,[],0,14)
+        game_state = call(object_store,[],0,12)
 
         if msg.data[2] != game_state[9]:
             return(0)
 
-        game_state[12] = msg.data[2]
-        game_state[13] = msg.data[3]
-
-        new_game_state = call(move_maker,game_state,14,12)
+        new_game_state = call(move_maker,[object_store, msg.data[2], msg.data[3]],3,12)
 
         call(object_store,new_game_state,12)
         return(1)
