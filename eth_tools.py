@@ -13,7 +13,7 @@ class Contract(object):
         self.blockchain = blockchain
 
         code = serpent.compile(open(filename).read())
-        tx1 = transactions.contract(self.blockchain.nonce,10**12,10000,0,code).sign(self.blockchain.key)
+        tx1 = transactions.contract(self.blockchain.nonce,10**12,100000,0,code).sign(self.blockchain.key)
         result, self.contract = processblock.apply_transaction(self.blockchain.genesis,tx1)
 
         self.blockchain.nonce += 1

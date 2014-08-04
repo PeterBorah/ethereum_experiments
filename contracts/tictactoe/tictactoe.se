@@ -1,7 +1,8 @@
 init:
-    contract.storage[0] = 2
+    contract.storage[0] = 3
     contract.storage[1] = create("contracts/tictactoe/move_maker.se")
     contract.storage[2] = create("contracts/tictactoe/win_checker.se")
+    contract.storage[3] = create("contracts/tictactoe/tie_checker.se")
 code:
     if msg.data[0] == "create":
        id = contract.storage[0] + 1
@@ -22,6 +23,7 @@ code:
         object_store = contract.storage[id]
         move_maker = contract.storage[1]
         win_checker = contract.storage[2]
+        tie_checker = contract.storage[3]
         player = msg.data[2]
 
         game_state = call(object_store,[],0,13)
@@ -33,6 +35,8 @@ code:
 
         if call(win_checker,new_game_state,10) == [1]:
             new_game_state[10] = player
+        elif call(tie_checker,new_game_state,9) == [1]:
+            new_game_state[10] = 3
 
         if new_game_state[9] == 1:
             new_game_state[9] = 2

@@ -3,9 +3,8 @@ from nose.tools import assert_equal
 from nose.exc import SkipTest
 
 class TestTicTacToe:
-    def setup(self):
-        bc = eth_tools.Blockchain()
-        self.contract = eth_tools.Contract(bc, "contracts/tictactoe/tictactoe.se")
+    bc = eth_tools.Blockchain()
+    contract = eth_tools.Contract(bc, "contracts/tictactoe/tictactoe.se")
 
     def test_creates_games(self):
         game_id = self.contract.invoke(["create", "a", "b"])[0]
@@ -39,7 +38,17 @@ class TestTicTacToe:
         assert_equal(self.contract.invoke(["get", game_id]), [1,1,1,0,2,2,0,0,0,2,1])
 
     def test_checks_for_tie(self):
-        pass
+        game_id = self.contract.invoke(["create", "a", "b"])[0]
+        self.contract.invoke(["move",game_id,1,0])
+        self.contract.invoke(["move",game_id,2,1])
+        self.contract.invoke(["move",game_id,1,2])
+        self.contract.invoke(["move",game_id,2,4])
+        self.contract.invoke(["move",game_id,1,3])
+        self.contract.invoke(["move",game_id,2,6])
+        self.contract.invoke(["move",game_id,1,5])
+        self.contract.invoke(["move",game_id,2,8])
+        self.contract.invoke(["move",game_id,1,7])
+        assert_equal(self.contract.invoke(["get", game_id]), [1,2,1,1,2,1,2,1,2,2,3])
 
     def test_checks_for_illegal_move(self):
         pass
