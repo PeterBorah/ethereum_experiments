@@ -1,11 +1,12 @@
 init:
-    contract.storage[0] = 1
+    contract.storage[0] = 2
     contract.storage[1] = create("contracts/tictactoe/move_maker.se")
+    contract.storage[2] = create("contracts/tictactoe/win_checker.se")
 code:
     if msg.data[0] == "create":
        id = contract.storage[0] + 1
        object_store = create("contracts/simple_object_store.se")
-       call(object_store,[0,0,0,0,0,0,0,0,0,1,msg.data[1],msg.data[2]], 12)
+       call(object_store,[0,0,0,0,0,0,0,0,0,1,0,msg.data[1],msg.data[2]], 13)
        contract.storage[id] = object_store
        contract.storage[0] += 1
 
@@ -14,19 +15,30 @@ code:
     if msg.data[0] == "get":
         id = msg.data[1]
         object_store = contract.storage[id]
-        return(call(object_store,[],0,12), 10)
+        return(call(object_store,[],0,11), 11)
 
     if msg.data[0] == "move":
         id = msg.data[1]
         object_store = contract.storage[id]
         move_maker = contract.storage[1]
+        win_checker = contract.storage[2]
+        player = msg.data[2]
 
-        game_state = call(object_store,[],0,12)
+        game_state = call(object_store,[],0,13)
 
-        if msg.data[2] != game_state[9]:
+        if player != game_state[9]:
             return(0)
 
-        new_game_state = call(move_maker,[object_store, msg.data[2], msg.data[3]],3,12)
+        new_game_state = call(move_maker,[object_store, player, msg.data[3]],3,13)
 
-        call(object_store,new_game_state,12)
+        if call(win_checker,new_game_state,10) == [1]:
+            new_game_state[10] = player
+
+        if new_game_state[9] == 1:
+            new_game_state[9] = 2
+        else:
+            new_game_state[9] = 1
+
+
+        call(object_store,new_game_state,13)
         return(1)

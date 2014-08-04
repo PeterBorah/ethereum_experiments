@@ -1,13 +1,8 @@
 player = msg.data[1]
 move = msg.data[2]
 
-game_state = call(msg.data[0],[],0,12)
+game_state = call(msg.data[0],[],0,13)
 
 game_state[move] = player
 
-if game_state[9] == 1:
-    game_state[9] = 2
-else:
-    game_state[9] = 1
-
-return(game_state, 12)
+return(game_state, 13)
