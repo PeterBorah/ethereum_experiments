@@ -11,6 +11,7 @@ else:
 
     i = 0
     while i < msg.datasize:
-        contract.storage[i + 1] = msg.data[i]
+        if contract.storage[i + 1] != msg.data[i]:
+            contract.storage[i + 1] = msg.data[i]
         i += 1
     return(1)
