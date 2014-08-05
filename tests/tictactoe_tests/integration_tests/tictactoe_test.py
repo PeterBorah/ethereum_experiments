@@ -51,4 +51,8 @@ class TestTicTacToe:
         assert_equal(self.contract.invoke(["get", game_id]), [1,2,1,1,2,1,2,1,2,2,3])
 
     def test_checks_for_illegal_move(self):
-        pass
+        game_id = self.contract.invoke(["create", "a", "b"])[0]
+        self.contract.invoke(["move",game_id,1,2])
+        assert_equal(self.contract.invoke(["move",game_id,2,2]), [0])
+        assert_equal(self.contract.invoke(["move",game_id,2,10]), [0])
+        assert_equal(self.contract.invoke(["get", game_id]), [0,0,1,0,0,0,0,0,0,2,0])

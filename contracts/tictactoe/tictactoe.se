@@ -31,7 +31,10 @@ code:
         if player != game_state[9]:
             return(0)
 
-        new_game_state = call(move_maker,[object_store, player, msg.data[3]],3,13)
+        new_game_state = call(move_maker,[object_store, player, msg.data[3]],3,14)
+
+        if new_game_state[13] != 1:
+            return(0)
 
         if call(win_checker,new_game_state,10) == [1]:
             new_game_state[10] = player
@@ -42,7 +45,6 @@ code:
             new_game_state[9] = 2
         else:
             new_game_state[9] = 1
-
 
         call(object_store,new_game_state,13)
         return(1)
