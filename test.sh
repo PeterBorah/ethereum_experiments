@@ -1,1 +1,1 @@
-nosetests --logging-filter=nothing
+nosetests --logging-filter=nothing $@

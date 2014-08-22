@@ -1,0 +1,8 @@
+init:
+    contract.storage[0] = create("contracts/restricted_store.se")
+code:
+    if msg.data[0] == "store":
+        args = [msg.data[0], msg.data[1]]
+        call(contract.storage[0],args,2)
+    elif msg.data[0] == "intro":
+        return(contract.storage[0])

@@ -1,0 +1,11 @@
+init:
+    contract.storage[0] = msg.sender
+code:
+    if msg.data[0] == "store":
+        if msg.sender == contract.storage[0]:
+            contract.storage[1] = msg.data[1]
+            return(1)
+        else:
+            return(2)
+    elif msg.datasize == 0:
+        return(contract.storage[1])
