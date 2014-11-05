@@ -1,0 +1,4 @@
+if msg.data[0] == "create":
+    child = create("contracts/replicator.se")
+    call(child,["set", contract.address],2)
+    return(child)
