@@ -1,9 +1,0 @@
-init:
-    contract.storage[0] = msg.sender
-code:
-    if (msg.data[0] == "set") and msg.sender == contract.storage[0]:
-        contract.storage[1] = msg.data[1]
-    elif msg.data[0] == "identify":
-        return(42)
-    elif msg.data[0] == "replicate":
-        return(call(contract.storage[1],["create"]))

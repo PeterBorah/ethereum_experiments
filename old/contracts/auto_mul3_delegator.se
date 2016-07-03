@@ -1,5 +1,0 @@
-init:
-    contract.storage[0] = create("contracts/mul3.se")
-code:
-    return(msg(1000,contract.storage[0],0,msg.data[0]))
-
