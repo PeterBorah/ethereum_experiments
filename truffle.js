@@ -15,7 +15,8 @@ module.exports = {
     "External",
     "ListFactory",
     "Doubler",
-    "Multiplier"
+    "Multiplier",
+    "Adder"
   ],
   rpc: {
     host: "localhost",

@@ -117,4 +117,34 @@ contract('List', function(accounts) {
 
     list_factory.create().catch(done);
   });
+
+  // Passes, but takes testrpc two minutes to run
+  xit("should be efficient enough to map/reduce on thousands of entries", function(done) {
+    var list_factory = ListFactory.deployed();
+    var event = list_factory.Creation({});
+
+    event.watch(function(err, result) {
+      event.stopWatching();
+      if (err) { throw err }
+
+      var list = List.at(result.args.createdAddress);
+      var calls = Array(2000).fill().map(function() {
+        return list.push(1);
+      });
+
+      Promise.all(calls).
+        then(function() { return list.length(); }).
+        then(function(result) {
+          assert.equal(result, 2000);
+        }).
+        then(function() { return list.mapReduceInMemory.sendTransaction(Doubler.deployed().address, Adder.deployed().address) }).
+        then(function() { return list.mapReduceInMemory(Doubler.deployed().address, Adder.deployed().address) }).
+        then(function(result) {
+          assert.equal(result, 4000);
+          done();
+        }).catch(done);
+    });
+
+    list_factory.create().catch(done);
+  });
 });

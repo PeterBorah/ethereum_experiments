@@ -51,8 +51,7 @@ contract List {
   }
 
   function mapReduceInMemory(Lambda mapper, Lambda reducer) constant returns(uint) {
-    // The "100" is a horrible hack until I can figure out how to do dynamic arrays in memory.
-    uint[100] memory tempList;
+    uint[] memory tempList = new uint[](data.length);
     uint mappedValue;
 
     for (uint i = 0; i < data.length; i++) {
