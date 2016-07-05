@@ -12,7 +12,10 @@ module.exports = {
   deploy: [
     "Lockable",
     "Consumer",
-    "External"
+    "External",
+    "ListFactory",
+    "Doubler",
+    "Multiplier"
   ],
   rpc: {
     host: "localhost",
