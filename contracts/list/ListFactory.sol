@@ -1,4 +1,4 @@
-import "list/List.sol";
+import "./List.sol";
 
 contract ListFactory {
   event Creation(address createdAddress);

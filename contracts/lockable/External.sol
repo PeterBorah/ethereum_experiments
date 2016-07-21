@@ -1,4 +1,4 @@
-import "lockable/Lockable.sol";
+import "./Lockable.sol";
 
 contract External {
   function untrustedBehavior(Lockable _lockable) {

@@ -1,10 +1,5 @@
-// Under 100k gas to create.
-contract TinyRouter {
-  address destination;
-
-  function TinyRouter(address _destination) {
-    destination = _destination;
-  }
+contract TinierRouter {
+  address constant destination = 0x4d02bad3192a089bbf9bd0056861c993a4136d36;
 
   function() {
     uint r;

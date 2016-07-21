@@ -1,5 +1,5 @@
-import "list/ListFactoryStub.sol";
-import "list/Lambda.sol";
+import "./ListFactoryStub.sol";
+import "./Lambda.sol";
 
 contract List {
   uint[] data;

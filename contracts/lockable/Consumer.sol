@@ -1,5 +1,5 @@
-import "lockable/Lockable.sol";
-import "lockable/External.sol";
+import "./Lockable.sol";
+import "./External.sol";
 
 contract Consumer {
   Lockable lockable;
