@@ -1,10 +1,7 @@
-// Under 100k gas to create.
-contract TinyRouter {
-  address destination;
-
-  function TinyRouter(address _destination) {
-    destination = _destination;
-  }
+// Saves 24k gas (total cost 74k), but requires address to be known at compile time. 
+// Theoretical best is 32k for a zero-byte contract.
+contract TinierRouter {
+  address constant destination = 0x4d02bad3192a089bbf9bd0056861c993a4136d36;
 
   function() {
     uint r;
