@@ -6,6 +6,7 @@ module.exports = function(deployer) {
     ListFactory,
     Doubler,
     Multiplier,
-    Adder
+    Adder,
+    Recurser
   ]);
 };
