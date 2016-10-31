@@ -1,3 +1,5 @@
+pragma solidity ^0.4.3;
+
 import "./RecurserChild.sol";
 
 contract Recurser {

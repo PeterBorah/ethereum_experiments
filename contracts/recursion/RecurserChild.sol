@@ -1,3 +1,5 @@
+pragma solidity ^0.4.3;
+
 contract RecurserChild {
   RecurserChild other;
 

@@ -1,5 +1,5 @@
 contract('Recurser', function(accounts) {
-  it.only("should work", function(done) {
+  it("should work", function(done) {
     var arg = [];
     // var length = 150; // Costs about 500k gas, despite passing the _entire_ array every time
     var length = 10;

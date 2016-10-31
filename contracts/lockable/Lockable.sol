@@ -1,8 +1,10 @@
+pragma solidity ^0.4.3;
+
 contract Lockable {
   uint data;
   address public lockHolder;
 
-  modifier requiresLock { if (lockHolder == msg.sender) _ }
+  modifier requiresLock { if (lockHolder == msg.sender) _; }
 
   function get() constant returns(uint) {
     return data;
@@ -16,7 +18,7 @@ contract Lockable {
     if (lockHolder != 0) return;
 
     lockHolder = msg.sender;
-    lockHolder.call(bytes4(sha3(signature)));
+    bool _ = lockHolder.call(bytes4(sha3(signature)));
     lockHolder = 0;
   }
 }

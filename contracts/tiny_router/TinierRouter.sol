@@ -1,3 +1,5 @@
+pragma solidity ^0.4.3;
+
 // Saves 24k gas (total cost 74k), but requires address to be known at compile time. 
 // Theoretical best is 32k for a zero-byte contract.
 contract TinierRouter {

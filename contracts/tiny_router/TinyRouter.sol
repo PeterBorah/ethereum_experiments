@@ -1,3 +1,5 @@
+pragma solidity ^0.4.3;
+
 // Under 100k gas to create.
 contract TinyRouter {
   address destination;

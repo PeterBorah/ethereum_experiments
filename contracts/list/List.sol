@@ -1,3 +1,5 @@
+pragma solidity ^0.4.3;
+
 import "./ListFactoryStub.sol";
 import "./Lambda.sol";
 
